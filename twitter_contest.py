@@ -24,13 +24,15 @@ class TwitterContest():
         """
         search_word = ['gagner', 'RT']
         tweets = []
-        test = self.api.GetSearch(' '.join(search_word), count=100)
+        test = self.api.GetSearch(' '.join(search_word), count=100, result_type='recent')
 
         # Remove RTs
         for tweet in test:
             p = re.compile(ur'^RT @', re.IGNORECASE)
             if not re.match(p, tweet.text):
                 tweets.append(tweet)
+            elif tweet.retweeted_status:
+                tweets.append(tweet.retweeted_status)
 
         return tweets
 
@@ -42,7 +44,7 @@ class TwitterContest():
             tweet: tweet correponding to the contest.
         """
         # Follow the user if necessary
-        if 'follow' in tweet.text or 'Follow' in tweet.text:
+        if 'follow' in tweet.text or 'Follow' in tweet.text or 'FOLLOW' in tweet.text or 'suivez' in tweet.text or 'Suivez' in tweet.text:
             try:
                 self.api.CreateFriendship(tweet.user.id)
             except:
