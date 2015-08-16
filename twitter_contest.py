@@ -10,8 +10,8 @@ class TwitterContest():
         """
         consumer_key = 'LJjCS3u6Bi8BaiEGr7fTZnJgy'
         consumer_secret = 'eCedGJimotK6VmODo8BYxIU8Ma1WdEwKHKVkEC9coWDFrse3Ef'
-        access_token = '3424055837-bfJzBwxRgFSqneW6gIRTbb7WIN07GAcriAWCAVa'
-        access_token_secret = 'IeX9LBAxjCrP9h3MPRauMnTw5PxkGl5vMnT5E5h1dXKHr'
+        access_token = '3424055837-M8qVxgwbA3zYKD7dAqhIQcIrqSwh95fkUmZW0Ee'
+        access_token_secret = 'U5Sr6ouZTPMYU1AZwSA4SiZ9qAzEb4mgkMFZZttXj6mHs'
 
         self.api = twitter.Api(consumer_key=consumer_key,
                       consumer_secret=consumer_secret,
