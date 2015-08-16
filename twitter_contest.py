@@ -28,7 +28,7 @@ class TwitterContest():
 
         # Remove RTs
         for tweet in test:
-            p = re.compile(ur'^RT @')
+            p = re.compile(ur'^RT @', re.IGNORECASE)
             if not re.match(p, tweet.text):
                 tweets.append(tweet)
 
