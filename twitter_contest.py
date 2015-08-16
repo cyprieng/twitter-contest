@@ -22,7 +22,7 @@ class TwitterContest():
         """
         Get the tweets correponding to a contest
         """
-        search_word = ['gagner', 'RT']
+        search_word = ['gagner', 'RT', '-DM']
         tweets = []
         test = self.api.GetSearch(' '.join(search_word), count=100, result_type='recent')
 
