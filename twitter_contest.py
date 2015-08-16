@@ -32,7 +32,8 @@ class TwitterContest():
             if not re.match(p, tweet.text):
                 tweets.append(tweet)
             elif tweet.retweeted_status:
-                tweets.append(tweet.retweeted_status)
+                if 'RT' in tweet.retweeted_status.text and 'gagner' in tweet.retweeted_status.text:
+                    tweets.append(tweet.retweeted_status)
 
         return tweets
 
