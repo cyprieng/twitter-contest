@@ -24,7 +24,6 @@ class TwitterContest():
         Post a random quote (avoid beeing flagged as spam...)
         """
         quote_index = random.randint(1, 266)
-        print self.api.VerifyCredentials()
 
         with open('quotes.txt') as f:
             for i, line in enumerate(f):
@@ -59,10 +58,16 @@ class TwitterContest():
         """
         # Follow the user if necessary
         if 'follow' in tweet.text or 'Follow' in tweet.text or 'FOLLOW' in tweet.text or 'suivez' in tweet.text or 'Suivez' in tweet.text:
-            pass
+            try:
+                self.api.CreateFriendship(tweet.user.id)
+            except:
+                pass
 
         # Retweet
-        pass
+        try:
+            self.api.PostRetweet(tweet.id)
+        except:
+            pass
 
     def run(self):
         """
@@ -70,5 +75,7 @@ class TwitterContest():
         """
         tweets = self.get_contest_tweets()
 
-        for tweet in tweets:
+        for tweet in tweets[0:10]:
             self.participate_in_contest(tweet)
+
+        self.post_quote()
