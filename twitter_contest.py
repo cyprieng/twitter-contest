@@ -1,5 +1,6 @@
 import twitter
 import re
+import random
 
 
 class TwitterContest():
@@ -8,15 +9,27 @@ class TwitterContest():
         """
         Init the twitter API.
         """
-        consumer_key = 'LJjCS3u6Bi8BaiEGr7fTZnJgy'
-        consumer_secret = 'eCedGJimotK6VmODo8BYxIU8Ma1WdEwKHKVkEC9coWDFrse3Ef'
-        access_token = '3424055837-M8qVxgwbA3zYKD7dAqhIQcIrqSwh95fkUmZW0Ee'
-        access_token_secret = 'U5Sr6ouZTPMYU1AZwSA4SiZ9qAzEb4mgkMFZZttXj6mHs'
+        consumer_key = 'M9iy7sWj2V8wiSxz6htUYBJne'
+        consumer_secret = 'mA9NMxe7WXqD4MSGK3KCA4MGWkERvoLI7mHwNDZ4QU4ErhRjOB'
+        access_token = '3424055837-OjbHUHAeQ0xkYX4MTIFmJONng9TNYSOLxmNBIF4'
+        access_token_secret = 'GX3sSDUZPvE1hMRNSTm2PPoIjxItYPZEpGfWmTCzeaq5G'
 
         self.api = twitter.Api(consumer_key=consumer_key,
-                      consumer_secret=consumer_secret,
-                      access_token_key=access_token,
-                      access_token_secret=access_token_secret)
+                               consumer_secret=consumer_secret,
+                               access_token_key=access_token,
+                               access_token_secret=access_token_secret)
+
+    def post_quote(self):
+        """
+        Post a random quote (avoid beeing flagged as spam...)
+        """
+        quote_index = random.randint(1, 266)
+        print self.api.VerifyCredentials()
+
+        with open('quotes.txt') as f:
+            for i, line in enumerate(f):
+                if i == quote_index - 1:
+                    return self.api.PostUpdates(line[0:139])
 
     def get_contest_tweets(self):
         """
@@ -46,16 +59,10 @@ class TwitterContest():
         """
         # Follow the user if necessary
         if 'follow' in tweet.text or 'Follow' in tweet.text or 'FOLLOW' in tweet.text or 'suivez' in tweet.text or 'Suivez' in tweet.text:
-            try:
-                self.api.CreateFriendship(tweet.user.id)
-            except:
-                pass
+            pass
 
         # Retweet
-        try:
-            self.api.PostRetweet(tweet.id)
-        except:
-            pass
+        pass
 
     def run(self):
         """
