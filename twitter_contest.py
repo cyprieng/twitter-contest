@@ -1,6 +1,7 @@
 import twitter
 import re
 import random
+import os
 
 
 class TwitterContest():
@@ -24,8 +25,10 @@ class TwitterContest():
         Post a random quote (avoid beeing flagged as spam...)
         """
         quote_index = random.randint(1, 266)
-
-        with open('quotes.txt') as f:
+        quote_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'quotes.txt')
+        print quote_file
+        return
+        with open(quote_file) as f:
             for i, line in enumerate(f):
                 if i == quote_index - 1:
                     return self.api.PostUpdates(line[0:139])
@@ -73,9 +76,9 @@ class TwitterContest():
         """
         Run detection of contest and participate.
         """
-        tweets = self.get_contest_tweets()
+        #tweets = self.get_contest_tweets()
 
-        for tweet in tweets[0:10]:
-            self.participate_in_contest(tweet)
+        #for tweet in tweets[0:10]:
+        #    self.participate_in_contest(tweet)
 
         self.post_quote()
