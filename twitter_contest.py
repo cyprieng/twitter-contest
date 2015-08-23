@@ -58,12 +58,18 @@ class TwitterContest():
         Args:
             tweet: tweet correponding to the contest.
         """
-        # Follow the user if necessary
+        # Follow users in the tweet if necessary
         if 'follow' in tweet.text or 'Follow' in tweet.text or 'FOLLOW' in tweet.text or 'suivez' in tweet.text or 'Suivez' in tweet.text:
             try:
                 self.api.CreateFriendship(tweet.user.id)
             except:
                 pass
+
+            for user in tweet.user_mentions:
+                try:
+                    self.api.CreateFriendship(user.id)
+                except:
+                    pass
 
         # Retweet
         try:
