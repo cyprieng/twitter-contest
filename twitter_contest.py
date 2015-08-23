@@ -10,10 +10,10 @@ class TwitterContest():
         """
         Init the twitter API.
         """
-        consumer_key = 'M9iy7sWj2V8wiSxz6htUYBJne'
-        consumer_secret = 'mA9NMxe7WXqD4MSGK3KCA4MGWkERvoLI7mHwNDZ4QU4ErhRjOB'
-        access_token = '3424055837-OjbHUHAeQ0xkYX4MTIFmJONng9TNYSOLxmNBIF4'
-        access_token_secret = 'GX3sSDUZPvE1hMRNSTm2PPoIjxItYPZEpGfWmTCzeaq5G'
+        consumer_key = 'HtMotX0vEPZtgQuwRHqDXaNuO'
+        consumer_secret = 'GWLsCDLjpvbNhz7IkGHUKCSij50HdGlt5JH2Cbo739C3nzOWzu'
+        access_token = '3436710681-KMX0MSF0k5lYhDNLSH8psOVR4phqCeIqZg1fih5'
+        access_token_secret = 'KSuP8xpsybgGgPEVM4Rub7jliePuuFAbH8uQKalG8UKsU'
 
         self.api = twitter.Api(consumer_key=consumer_key,
                                consumer_secret=consumer_secret,
