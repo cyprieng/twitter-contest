@@ -59,7 +59,8 @@ class TwitterContest():
             tweet: tweet correponding to the contest.
         """
         # Follow users in the tweet if necessary
-        if 'follow' in tweet.text or 'Follow' in tweet.text or 'FOLLOW' in tweet.text or 'suivez' in tweet.text or 'Suivez' in tweet.text:
+        follow = ['follow', 'Follow', 'FOLLOW', 'suivez', 'Suivez']
+        if any(f in tweet.text for f in follow):
             try:
                 self.api.CreateFriendship(tweet.user.id)
             except:
@@ -70,6 +71,14 @@ class TwitterContest():
                     self.api.CreateFriendship(user.id)
                 except:
                     pass
+
+        # Favorite tweet if necessary
+        fav = ['Fav', 'fav']
+        if any(f in tweet.text for f in fav):
+            try:
+                self.api.CreateFavorite(id=tweet.id)
+            except:
+                pass
 
         # Retweet
         try:
