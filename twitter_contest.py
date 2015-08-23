@@ -24,7 +24,7 @@ class TwitterContest():
         """
         Post a random quote (avoid beeing flagged as spam...)
         """
-        quote_index = random.randint(1, 266)
+        quote_index = random.randint(1, 76233)
         quote_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'quotes.txt')
 
         with open(quote_file) as f:
